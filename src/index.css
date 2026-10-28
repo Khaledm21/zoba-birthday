@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #17172B;
+  --color-violet-deep: #222139;
+  --color-lavender: #B9A4E8;
+  --color-blush: #F1B8C8;
+  --color-cream: #FFF5F0;
+  --color-lilac: #C5BFD8;
+  --color-gold: #F8D98D;
+
+  --font-cairo: 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-dm: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-dm);
+  }
+
+  [dir="rtl"] {
+    font-family: var(--font-cairo);
+  }
+
+  body {
+    background-color: #17172B;
+    color: #FFF5F0;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom 3D & cinematic utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(34, 33, 57, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(185, 164, 232, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.45),
+              0 0 20px -4px rgba(248, 217, 141, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(34, 33, 57, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(248, 217, 141, 0.3);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.55),
+              0 0 30px -4px rgba(248, 217, 141, 0.2);
+}
+
+/* Subtle glow filters */
+.glow-gold {
+  filter: drop-shadow(0 0 18px rgba(248, 217, 141, 0.45));
+}
+
+.glow-lavender {
+  filter: drop-shadow(0 0 22px rgba(185, 164, 232, 0.35));
+}
+
+/* Custom animated gradient backgrounds */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #17172B;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(185, 164, 232, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(248, 217, 141, 0.45);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
