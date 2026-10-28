@@ -20,7 +20,7 @@ export const letterData: LetterContent = {
     ar: 'No matter the distance, you’re always in my thoughts... Miss you so much!',
   },
   signature: {
-    en: 'With lots of love, Always 💫 — من خالد 💗',
-    ar: 'With lots of love, Always 💫 — من خالد 💗',
+    en: 'With all my love, Always 💫 — Forever Yours, Khaled 💗',
+    ar: 'With all my love, Always 💫 — Forever Yours, Khaled 💗',
   },
 };

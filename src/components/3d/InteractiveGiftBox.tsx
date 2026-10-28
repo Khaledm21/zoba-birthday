@@ -18,18 +18,18 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
 
       // Trigger burst of gold, lavender, blush and celebratory confetti
       confetti({
-        particleCount: 55,
-        spread: 75,
-        origin: { y: 0.55 },
+        particleCount: 65,
+        spread: 80,
+        origin: { y: 0.6 },
         colors: ['#F8D98D', '#B9A4E8', '#F1B8C8', '#FFF5F0', '#E70013'],
-        ticks: 200,
-        gravity: 0.9,
+        ticks: 220,
+        gravity: 0.85,
       });
     }
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center py-8 select-none">
+    <div className="relative flex flex-col items-center justify-center py-6 select-none">
       {/* 3D Box Container with Perspective */}
       <div
         className="relative w-64 h-64 sm:w-72 sm:h-72 cursor-pointer perspective-1000 flex items-center justify-center"
@@ -62,7 +62,7 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
           }`}
         >
           {/* Box Bottom Base */}
-          <div className="absolute inset-x-0 bottom-0 h-32 sm:h-38 rounded-2xl bg-gradient-to-br from-[#2a244d] via-[#222139] to-[#17172B] border-2 border-[#B9A4E8]/40 shadow-2xl overflow-hidden">
+          <div className="absolute inset-x-0 bottom-0 h-32 sm:h-38 rounded-2xl bg-gradient-to-br from-[#2a244d] via-[#222139] to-[#17172B] border-2 border-[#B9A4E8]/40 shadow-2xl overflow-hidden z-20">
             {/* Ambient inner glow */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5" />
 
@@ -76,18 +76,18 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
               <div className="h-1 w-full bg-[#FFF5F0]/40" />
             </div>
 
-            {/* Light beam shooting out if open */}
+            {/* Warm light beam shooting out when open */}
             {isOpen && (
-              <div className="absolute inset-x-4 top-0 h-28 bg-gradient-to-t from-transparent via-[#F8D98D]/40 to-[#FFF5F0] blur-sm animate-pulse z-20 pointer-events-none" />
+              <div className="absolute inset-x-3 top-0 h-28 bg-gradient-to-t from-transparent via-[#F8D98D]/40 to-[#FFF5F0] blur-sm animate-pulse z-20 pointer-events-none" />
             )}
           </div>
 
-          {/* Box Lid with 3D Flip Open Animation */}
+          {/* Box Lid - Slides away to the bottom-left side so it NEVER blocks the envelope */}
           <div
-            className={`absolute -top-1 -inset-x-2 h-14 sm:h-16 rounded-2xl bg-gradient-to-br from-[#382b61] via-[#2a244d] to-[#1f1a3a] border-2 border-[#F8D98D]/60 shadow-xl transition-all duration-700 ease-out preserve-3d origin-top-right z-30 ${
+            className={`absolute -top-1 -inset-x-2 h-14 sm:h-16 rounded-2xl bg-gradient-to-br from-[#382b61] via-[#2a244d] to-[#1f1a3a] border-2 border-[#F8D98D]/60 shadow-xl transition-all duration-700 ease-out preserve-3d origin-top-left ${
               isOpen
-                ? '-translate-y-20 -translate-x-12 -rotate-45 rotate-x-45 opacity-90'
-                : 'hover:-translate-y-1'
+                ? '-translate-x-28 sm:-translate-x-36 translate-y-16 sm:translate-y-20 rotate-[-22deg] rotate-x-20 z-10 scale-85 opacity-85 pointer-events-none'
+                : 'hover:-translate-y-1 z-30'
             }`}
           >
             {/* Lid Vertical Ribbon */}
@@ -103,11 +103,68 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-4 border-[#F8D98D] bg-gradient-to-bl from-[#F8D98D] to-[#d8b55c] shadow-md rotate-[35deg] transform -ml-2" />
             </div>
           </div>
+
+          {/* Floating Royal Wax-Sealed Envelope - Positioned at highest z-index (z-40) */}
+          <div
+            onClick={(e) => {
+              if (isOpen) {
+                e.stopPropagation();
+                onOpenLetter();
+              }
+            }}
+            className={`absolute left-1/2 -translate-x-1/2 transition-all duration-1000 ease-out z-40 group cursor-pointer ${
+              isOpen
+                ? 'scale-100 opacity-100 pointer-events-auto animate-float-envelope'
+                : 'translate-y-8 scale-50 opacity-0 pointer-events-none'
+            }`}
+            style={{
+              transitionDelay: isOpen ? '280ms' : '0ms',
+            }}
+            title="Open Your Special Letter 💌"
+          >
+            {/* Golden Aura Glow behind envelope */}
+            <div className="absolute -inset-4 bg-radial from-[#F8D98D]/60 via-[#B9A4E8]/25 to-transparent blur-2xl rounded-2xl animate-pulse pointer-events-none" />
+
+            {/* Interactive "Tap to Open" pill floating above envelope */}
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-3.5 py-1 rounded-full bg-[#17172B]/95 border border-[#F8D98D] text-[#F8D98D] text-[11px] font-bold shadow-xl flex items-center gap-1.5 group-hover:scale-105 group-hover:bg-[#F8D98D] group-hover:text-[#17172B] transition-all">
+              <Sparkles className="w-3 h-3 text-[#F8D98D] group-hover:text-[#17172B]" />
+              <span>Open Letter ✨</span>
+            </div>
+
+            {/* Premium Parchment Envelope Body */}
+            <div className="relative w-40 sm:w-48 h-26 sm:h-32 rounded-xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF1E4] to-[#EEDCC9] border-2 border-[#F8D98D] shadow-2xl shadow-black/70 group-hover:scale-105 transition-all duration-300 overflow-hidden flex flex-col justify-between">
+              {/* Letter Card Peeking out from inside envelope */}
+              <div className="absolute top-1.5 inset-x-3 h-8 bg-[#FFF5F0] rounded-t-md border-t border-x border-[#d8c7b8]/60 shadow-xs flex items-center justify-center px-2">
+                <span className="text-[10px] font-serif italic font-bold text-[#b92c42] tracking-wide">
+                  For Zoba 💗
+                </span>
+              </div>
+
+              {/* Envelope Flap Fold (V-Shape triangular fold) */}
+              <div className="absolute top-0 inset-x-0 h-13 bg-gradient-to-b from-[#eedecf] to-[#FFFDF9] border-b border-[#F8D98D]/70 [clip-path:polygon(0_0,100%_0,50%_100%)] shadow-sm z-10 pointer-events-none" />
+
+              {/* 3D Royal Crimson Wax Seal in Center */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-[#771524] via-[#b92c42] to-[#992233] shadow-xl shadow-black/50 border-2 border-[#F8D98D] flex items-center justify-center rotate-[-6deg] group-hover:rotate-0 group-hover:scale-110 transition-transform select-none">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-dashed border-[#F8D98D]/80 flex items-center justify-center text-center">
+                  <span className="text-[8px] sm:text-[9px] font-bold tracking-tight text-[#F8D98D] uppercase leading-none drop-shadow-sm">
+                    FOR ZOBA
+                  </span>
+                </div>
+              </div>
+
+              {/* Classic bottom envelope fold shadows */}
+              <div className="absolute bottom-0 inset-x-0 h-14 [clip-path:polygon(0_100%,100%_100%,50%_35%)] bg-gradient-to-t from-[#dfc0ad]/60 to-transparent pointer-events-none" />
+
+              {/* Corner Star Sparkles */}
+              <Sparkles className="absolute bottom-2 left-2.5 w-3.5 h-3.5 text-[#F8D98D] animate-spin z-20 pointer-events-none" style={{ animationDuration: '6s' }} />
+              <Sparkles className="absolute top-2 right-2.5 w-3 h-3 text-[#F8D98D] z-20 pointer-events-none" />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Secret Message Reveal & Next Step Button */}
-      <div className="mt-6 flex flex-col items-center text-center max-w-md px-4 min-h-[110px]">
+      <div className="mt-8 flex flex-col items-center text-center max-w-md px-4 min-h-[110px]">
         {!isOpen ? (
           <p className="text-xs sm:text-sm text-[#B9A4E8] animate-pulse">
             {t.gift.hint}
@@ -125,7 +182,7 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
 
             <button
               onClick={onOpenLetter}
-              className="mt-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#B9A4E8] via-[#F8D98D] to-[#F1B8C8] text-[#17172B] font-semibold text-sm shadow-xl shadow-[#F8D98D]/20 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2"
+              className="mt-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#B9A4E8] via-[#F8D98D] to-[#F1B8C8] text-[#17172B] font-semibold text-sm shadow-xl shadow-[#F8D98D]/20 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
             >
               <span>{t.gift.openLetterBtn}</span>
               {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -145,6 +202,17 @@ export const InteractiveGiftBox: React.FC<InteractiveGiftBoxProps> = ({ onOpenLe
         }
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+        @keyframes floatEnvelope {
+          0%, 100% {
+            transform: translate(-50%, -60px) rotate(-2deg);
+          }
+          50% {
+            transform: translate(-50%, -70px) rotate(1deg);
+          }
+        }
+        .animate-float-envelope {
+          animation: floatEnvelope 3.5s ease-in-out infinite;
         }
         @keyframes fadeIn {
           from {

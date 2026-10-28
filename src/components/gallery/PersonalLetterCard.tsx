@@ -132,7 +132,7 @@ export const PersonalLetterCard: React.FC<PersonalLetterCardProps> = ({ onContin
                 {getGreeting()}
               </h2>
               <p className="text-sm sm:text-base font-bold text-[#b92c42] mt-1 font-serif">
-                كل سنة وانتِ طيبة يا قطووووسة ✨
+                كل سنة وانتي طيبة يا بهنوووسة ✨
               </p>
               <div className="w-16 h-1 bg-gradient-to-r from-[#B9A4E8] to-[#F8D98D] rounded-full mt-2.5" />
             </div>
@@ -178,13 +178,15 @@ export const PersonalLetterCard: React.FC<PersonalLetterCardProps> = ({ onContin
             <p className="text-sm sm:text-base font-semibold font-serif text-[#17172B]">
               {getClosing()}
             </p>
-            <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-              <p className="text-xs text-[#222139]/70 font-medium">
-                With lots of love & warmest wishes, Always 💫
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pt-2">
+              <p className="text-xs sm:text-sm text-[#222139]/75 font-medium italic">
+                With all my love & warmest wishes, Always 💫
               </p>
-              <p className="text-sm sm:text-base font-bold font-serif text-[#b92c42]">
-                — من خالد 💗
-              </p>
+              <div className="text-right self-end sm:self-auto">
+                <span className="text-base sm:text-lg font-bold font-serif italic text-[#b92c42] tracking-wide block">
+                  — Forever Yours, Khaled 💗
+                </span>
+              </div>
             </div>
           </div>
         </div>

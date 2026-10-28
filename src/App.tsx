@@ -119,7 +119,7 @@ const MainExperience: React.FC = () => {
           ref={giftRef}
           className="w-full min-h-[85vh] flex flex-col items-center justify-center py-16"
         >
-          <div className="text-center mb-4">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B9A4E8]/15 border border-[#B9A4E8]/30 text-xs font-semibold text-[#F8D98D] mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{t.gift.badge}</span>
