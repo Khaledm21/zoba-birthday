@@ -249,7 +249,7 @@ export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) 
           {/* Golden Lettering on cake body */}
           <div className="w-full flex items-center justify-center py-1">
             <span className="text-xs font-bold tracking-widest uppercase text-[#F8D98D] drop-shadow-md">
-              ZOBA ✨ 2026
+              HAPPY BIRTHDAY ZOBA ✨
             </span>
           </div>
 

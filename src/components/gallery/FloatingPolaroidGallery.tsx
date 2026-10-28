@@ -30,7 +30,7 @@ export const FloatingPolaroidGallery: React.FC<FloatingPolaroidGalleryProps> = (
               {/* Decorative Tape Strip on top */}
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#F8D98D]/40 backdrop-blur-sm border-l border-r border-[#F8D98D]/60 rotate-[-2deg] shadow-sm z-20 pointer-events-none rounded-xs flex items-center justify-center">
                 <span className="text-[9px] text-[#17172B]/70 font-mono tracking-tighter">
-                  ZOBA ✨ 2026
+                  ZOBA ✨ FOREVER
                 </span>
               </div>
 

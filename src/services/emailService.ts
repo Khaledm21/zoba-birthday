@@ -11,7 +11,7 @@ export async function sendWishToEmail(wish: string): Promise<boolean> {
       </div>
       <div style="text-align: center; border-top: 1px solid rgba(185, 164, 232, 0.3); padding-top: 15px; font-size: 12px; color: #C5BFD8;">
         تاريخ وتوقيت الأمنية: ${new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' })}<br/>
-        Happy Birthday Zoba • 2026 💗
+        Happy Birthday Zoba 💗
       </div>
     </div>
   `;

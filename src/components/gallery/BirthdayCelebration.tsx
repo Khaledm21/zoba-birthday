@@ -115,9 +115,9 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
       ctx.font = 'bold 36px "Georgia", serif';
       ctx.fillText('Miss you so much, Zoba! 💗', 540, 1235);
 
-      ctx.fillStyle = 'rgba(197, 191, 216, 0.8)';
-      ctx.font = '22px sans-serif';
-      ctx.fillText('كل عام وإنتِ حية بخير يا زوبا ✨ 2026', 540, 1285);
+      ctx.fillStyle = 'rgba(197, 191, 216, 0.9)';
+      ctx.font = 'bold 28px "Segoe UI", Tahoma, sans-serif';
+      ctx.fillText('كل سنه وانت طيبه يا قطووووسه 💗', 540, 1285);
 
       ctx.fillStyle = 'rgba(248, 217, 141, 0.6)';
       ctx.font = '16px monospace';
@@ -127,7 +127,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
       try {
         const url = canvas.toDataURL('image/png');
         const link = document.createElement('a');
-        link.download = 'Zoba-Birthday-Keepsake-2026.png';
+        link.download = 'Zoba-Birthday-Keepsake.png';
         link.href = url;
         document.body.appendChild(link);
         link.click();
