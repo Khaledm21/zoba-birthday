@@ -169,7 +169,7 @@ export const PersonalLetterCard: React.FC<PersonalLetterCardProps> = ({ onContin
 
           {/* Closing & Warm Signature */}
           <div
-            className={`pt-3 border-t border-[#d8c7b8]/60 flex flex-col gap-1 transition-all duration-700 ${
+            className={`pt-3 border-t border-[#d8c7b8]/60 flex flex-col gap-1.5 transition-all duration-700 ${
               isSkipped || revealedParagraphs >= letterData.paragraphs.length + 2
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-4'
@@ -178,9 +178,14 @@ export const PersonalLetterCard: React.FC<PersonalLetterCardProps> = ({ onContin
             <p className="text-sm sm:text-base font-semibold font-serif text-[#17172B]">
               {getClosing()}
             </p>
-            <p className="text-xs text-[#222139]/60 font-medium mt-0.5">
-              {letterData.signature.ar}
-            </p>
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+              <p className="text-xs text-[#222139]/70 font-medium">
+                With lots of love & warmest wishes, Always 💫
+              </p>
+              <p className="text-sm sm:text-base font-bold font-serif text-[#b92c42]">
+                — من خالد 💗
+              </p>
+            </div>
           </div>
         </div>
       </div>
