@@ -18,6 +18,47 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
   const [isPhotoZoomed, setIsPhotoZoomed] = useState<boolean>(false);
   const [isHugging, setIsHugging] = useState<boolean>(false);
   const [isGeneratingCard, setIsGeneratingCard] = useState<boolean>(false);
+  const [showQatatesModal, setShowQatatesModal] = useState<boolean>(false);
+
+  const playMeowSound = () => {
+    try {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      const now = ctx.currentTime;
+
+      // Realistic cute cat meow pitch modulation
+      osc.frequency.setValueAtTime(550, now);
+      osc.frequency.exponentialRampToValueAtTime(920, now + 0.16);
+      osc.frequency.exponentialRampToValueAtTime(460, now + 0.55);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.28, now + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.65);
+    } catch {
+      // Audio context blocked fallback
+    }
+  };
+
+  const triggerQatatesEasterEgg = () => {
+    playMeowSound();
+    setShowQatatesModal(true);
+    confetti({
+      particleCount: 55,
+      spread: 75,
+      origin: { y: 0.6 },
+      colors: ['#F8D98D', '#d97706', '#F1B8C8', '#f43f5e'],
+    });
+  };
 
   const handleSendWarmHug = () => {
     setIsHugging(true);
@@ -347,6 +388,17 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
           </button>
         </div>
 
+        {/* Secret Easter Egg Button: Qatates 🥔🐱 */}
+        <div className="flex justify-center my-0.5">
+          <button
+            onClick={triggerQatatesEasterEgg}
+            className="px-5 py-2.5 rounded-full bg-[#17172B]/90 hover:bg-[#222139] border border-red-500/50 hover:border-red-400 text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold transition-all shadow-lg shadow-red-950/30 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+            title="ما تدوسش هنا ❌"
+          >
+            <span>ما تدوسش هنا ❌</span>
+          </button>
+        </div>
+
         {/* 3. Navigation & Replay: Compact & Aligned */}
         <div className="grid grid-cols-2 gap-3 pt-1">
           <button
@@ -422,6 +474,43 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
             >
               Close with love 💕
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* 🥔🐱 Secret Qatates Easter Egg Modal */}
+      {showQatatesModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn"
+          onClick={() => setShowQatatesModal(false)}
+        >
+          <div
+            className="relative rounded-3xl p-3 sm:p-4 max-w-sm w-full bg-[#17172B]/95 border-2 border-red-500/40 shadow-2xl shadow-red-950/50 animate-fadeIn flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setShowQatatesModal(false)}
+              aria-label="Close"
+              className="absolute -top-3 -right-3 p-2 rounded-full bg-[#222139] border border-white/20 text-[#FFF5F0] hover:bg-white/20 transition-colors cursor-pointer shadow-lg z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Qatates Meme Image ONLY */}
+            <div
+              className="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] rounded-2xl overflow-hidden bg-white shadow-xl cursor-pointer"
+              onClick={playMeowSound}
+              title="انقري لسماع المياوو 🐾"
+            >
+              <img
+                src="/images/qatates.jpg"
+                alt="قطاطس"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </div>
       )}
