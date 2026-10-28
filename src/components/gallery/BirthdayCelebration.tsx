@@ -117,7 +117,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
 
       ctx.fillStyle = 'rgba(197, 191, 216, 0.9)';
       ctx.font = 'bold 28px "Segoe UI", Tahoma, sans-serif';
-      ctx.fillText('كل سنة وانتي طيبة يا بهنوووسة 💗', 540, 1285);
+      ctx.fillText('كل سنة وانتي طيبة يا بهنووسة 💗', 540, 1285);
 
       ctx.fillStyle = 'rgba(248, 217, 141, 0.6)';
       ctx.font = '16px monospace';
@@ -186,7 +186,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
         {t.celebration.title}
       </h1>
       <p className="text-lg sm:text-2xl font-serif text-[#F8D98D] font-bold mb-4">
-        كل سنة وانتي طيبة يا بهنوووسة ✨
+        كل سنة وانتي طيبة يا قطوووسة ✨
       </p>
 
       {/* 🌟 Grand Finale Centerpiece Photo: You & Zoba Together */}
@@ -234,7 +234,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
 
         <div className="mt-5 flex items-center justify-center gap-2 text-sm font-bold text-[#F8D98D]">
           <Heart className="w-4 h-4 fill-[#F1B8C8] text-[#F1B8C8]" />
-          <span>كل سنة وانتي طيبة يا بهنوووسة 💗</span>
+          <span>كل سنة وانتي طيبة يا قطوووسة 💗</span>
         </div>
       </div>
 
