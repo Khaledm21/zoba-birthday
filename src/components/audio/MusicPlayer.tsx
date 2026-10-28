@@ -163,7 +163,7 @@ export const MusicPlayer: React.FC = () => {
           <div className="flex items-center justify-between pb-2.5 border-b border-[#B9A4E8]/20 mb-3">
             <div className="flex items-center gap-2 text-xs font-bold text-[#FFF5F0]">
               <Sparkles className="w-3.5 h-3.5 text-[#F8D98D]" />
-              <span>Zoba's Birthday Playlist 🎵</span>
+              <span>Zoba's Birthday Playlist</span>
             </div>
             <button
               onClick={() => setShowPlaylistModal(false)}

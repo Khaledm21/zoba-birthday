@@ -274,7 +274,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
           }`}
         >
           <Music className="w-4 h-4 text-[#F8D98D]" />
-          <span>Kelma (Ramy Sabry) 🎵</span>
+          <span>Kelma (Ramy Sabry)</span>
         </button>
 
         {/* Virtual Hug Across the Miles Button */}

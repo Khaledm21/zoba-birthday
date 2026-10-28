@@ -123,16 +123,16 @@ const unifiedTranslation: TranslationDictionary = {
     scrollHint: 'Scroll gently to begin the journey',
   },
   gift: {
-    badge: 'A Gift From The Heart 🎁',
+    badge: 'A Gift From The Heart',
     title: 'Something Special Awaits',
     hint: 'Tap the gift box to open ✨',
     revealedTitle: 'Happy Birthday, Zoba! 💖',
     revealedText: 'Something very special is waiting for you…',
-    openLetterBtn: 'Read Your Letter 💌',
+    openLetterBtn: 'Open Your Letter ✨',
     recloseBtn: 'Close Box',
   },
   letter: {
-    badge: 'From The Heart 💌',
+    badge: 'From The Heart',
     title: 'A Special Letter for Zoba',
     waxSeal: 'FOR ZOBA',
     skip: 'Read Full Letter',
@@ -198,7 +198,7 @@ const unifiedTranslation: TranslationDictionary = {
     mute: 'Mute',
     unmute: 'Unmute',
     synthesizedLabel: 'Acoustic Melody',
-    trackTitle: 'Zoba’s Playlist 🎵',
+    trackTitle: 'Zoba’s Playlist',
   },
   languageSwitcher: {
     en: 'English',

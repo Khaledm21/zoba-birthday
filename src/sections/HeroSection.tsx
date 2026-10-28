@@ -67,7 +67,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartSurprise }) => 
 
         <div className="flex items-center gap-2 text-xs text-[#C5BFD8]/70 mt-1">
           <Music className="w-3.5 h-3.5 text-[#F8D98D]" />
-          <span>Kol Sana Wenta Albi 🎵</span>
+          <span>Kol Sana Wenta Albi</span>
         </div>
 
         <span className="text-xs text-[#C5BFD8]/70 flex items-center gap-1.5 mt-2 animate-bounce">
