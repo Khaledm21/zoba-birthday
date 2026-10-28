@@ -73,7 +73,7 @@ export const StarryBackground: React.FC = () => {
     };
 
     const initBokeh = () => {
-      const count = Math.min(Math.floor(width / 140), 10);
+      const count = Math.min(Math.floor(width / 200), 5);
       bokehList = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -141,7 +141,7 @@ export const StarryBackground: React.FC = () => {
         ctx.fill();
       }
 
-      // Render Twinkling Dust Points
+      // Render Twinkling Dust Points (Ultra-fast, zero GPU lag)
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
         const alpha = Math.max(
@@ -149,16 +149,11 @@ export const StarryBackground: React.FC = () => {
           Math.min(1, s.baseAlpha + Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset) * 0.4)
         );
 
-        ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle = s.color;
-        ctx.shadowColor = s.color;
-        ctx.shadowBlur = s.size * 3;
-
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
 
       // Render Floating Birthday Cakes 🎂 & Hearts 💖

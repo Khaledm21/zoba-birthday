@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Mic, RotateCcw, ArrowRight, ArrowLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, RotateCcw, ArrowRight, ArrowLeft } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useLanguage } from '../../hooks/useLanguageContext';
 import { sendWishToEmail } from '../../services/emailService';
@@ -11,8 +11,6 @@ interface InteractiveCakeProps {
 export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) => {
   const { t, isRtl } = useLanguage();
   const [candlesLit, setCandlesLit] = useState<boolean>(true);
-  const [isListeningMic, setIsListeningMic] = useState<boolean>(false);
-  const [micError, setMicError] = useState<string | null>(null);
   const [showSmoke, setShowSmoke] = useState<boolean>(false);
 
   // Secret Birthday Wish Jar State
@@ -61,15 +59,11 @@ export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) 
     }, 2200);
   };
 
-  const audioStreamRef = useRef<MediaStream | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
-
   // Extinguish candles action
   const extinguishCandles = () => {
     if (!candlesLit) return;
     setCandlesLit(false);
     setShowSmoke(true);
-    stopMicListening();
 
     // Gentle sparkles confetti burst
     confetti({
@@ -90,78 +84,6 @@ export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) 
     setCandlesLit(true);
     setShowSmoke(false);
   };
-
-  // Optional Microphone blow detection
-  const startMicBlowDetection = async () => {
-    try {
-      setMicError(null);
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      audioStreamRef.current = stream;
-
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const audioCtx = new AudioCtx();
-      audioContextRef.current = audioCtx;
-
-      const analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 256;
-      const source = audioCtx.createMediaStreamSource(stream);
-      source.connect(analyser);
-
-      setIsListeningMic(true);
-
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      let blowCount = 0;
-      const checkBlow = () => {
-        if (!candlesLit || !audioStreamRef.current) return;
-
-        analyser.getByteFrequencyData(dataArray);
-
-        // Low-frequency breath turbulence energy detection
-        let lowFreqEnergy = 0;
-        for (let i = 0; i < 20; i++) {
-          lowFreqEnergy += dataArray[i];
-        }
-        const avg = lowFreqEnergy / 20;
-
-        if (avg > 75) {
-          blowCount++;
-          if (blowCount > 4) {
-            extinguishCandles();
-            return;
-          }
-        } else {
-          blowCount = Math.max(0, blowCount - 1);
-        }
-
-        requestAnimationFrame(checkBlow);
-      };
-
-      requestAnimationFrame(checkBlow);
-    } catch {
-      setMicError(t.cake.micError);
-      setIsListeningMic(false);
-    }
-  };
-
-  const stopMicListening = () => {
-    if (audioStreamRef.current) {
-      audioStreamRef.current.getTracks().forEach((track) => track.stop());
-      audioStreamRef.current = null;
-    }
-    if (audioContextRef.current) {
-      audioContextRef.current.close().catch(() => {});
-      audioContextRef.current = null;
-    }
-    setIsListeningMic(false);
-  };
-
-  useEffect(() => {
-    return () => {
-      stopMicListening();
-    };
-  }, []);
 
   return (
     <div className="relative w-full max-w-xl mx-auto py-8 px-4 flex flex-col items-center select-none">
@@ -266,23 +188,16 @@ export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) 
       <div className="mt-8 flex flex-col items-center text-center gap-4 min-h-[100px]">
         {candlesLit ? (
           <div className="flex flex-col items-center gap-2.5">
-            {!isListeningMic ? (
-              <button
-                onClick={startMicBlowDetection}
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#F8D98D] via-[#FFE29A] to-[#F1B8C8] text-[#17172B] font-bold text-base sm:text-lg shadow-xl shadow-[#F8D98D]/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
-              >
-                <Mic className="w-5 h-5 text-[#17172B] animate-pulse" />
-                <span>{t.cake.micAction}</span>
-              </button>
-            ) : (
-              <div className="px-6 py-3 rounded-full bg-[#222139] border border-[#F8D98D]/50 text-[#F8D98D] text-sm font-semibold animate-pulse flex items-center gap-2 shadow-lg">
-                <Mic className="w-4 h-4 animate-bounce text-[#F8D98D]" />
-                <span>{t.cake.micListening}</span>
-              </div>
-            )}
+            <button
+              onClick={extinguishCandles}
+              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#F8D98D] via-[#FFE29A] to-[#F1B8C8] text-[#17172B] font-bold text-base sm:text-lg shadow-xl shadow-[#F8D98D]/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
+            >
+              <Sparkles className="w-5 h-5 text-[#17172B]" />
+              <span>{t.cake.blowAction}</span>
+            </button>
 
-            <span className="text-xs text-[#C5BFD8]/70 flex items-center gap-1.5 mt-0.5">
-              (or tap the cake directly 🎂)
+            <span className="text-xs text-[#C5BFD8]/80 flex items-center gap-1.5 mt-0.5">
+              (أو اضغطي على التورتة مباشرة ✨)
             </span>
           </div>
         ) : (
@@ -367,11 +282,7 @@ export const InteractiveCake: React.FC<InteractiveCakeProps> = ({ onContinue }) 
           </div>
         )}
 
-        {micError && (
-          <p className="text-xs text-[#F1B8C8]/80 max-w-sm mt-1">
-            {micError}
-          </p>
-        )}
+
       </div>
 
       {/* Real Birthday Cake Keepsake Photo Card */}

@@ -117,7 +117,7 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
 
       ctx.fillStyle = 'rgba(197, 191, 216, 0.9)';
       ctx.font = 'bold 28px "Segoe UI", Tahoma, sans-serif';
-      ctx.fillText('كل سنه وانت طيبه يا قطووووسه 💗', 540, 1285);
+      ctx.fillText('كل سنة وانتي طيبة يا بهنوووسة 💗', 540, 1285);
 
       ctx.fillStyle = 'rgba(248, 217, 141, 0.6)';
       ctx.font = '16px monospace';
@@ -182,9 +182,12 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
       </div>
 
       {/* Grand Title */}
-      <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-serif text-[#FFF5F0] tracking-tight leading-tight drop-shadow-xl mb-4">
+      <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-serif text-[#FFF5F0] tracking-tight leading-tight drop-shadow-xl mb-2">
         {t.celebration.title}
       </h1>
+      <p className="text-lg sm:text-2xl font-serif text-[#F8D98D] font-bold mb-4">
+        كل سنة وانتي طيبة يا بهنوووسة ✨
+      </p>
 
       {/* 🌟 Grand Finale Centerpiece Photo: You & Zoba Together */}
       <div className="my-6 relative w-full max-w-[300px] sm:max-w-sm mx-auto group">
@@ -229,97 +232,139 @@ export const BirthdayCelebration: React.FC<BirthdayCelebrationProps> = ({
           “{t.celebration.message}”
         </p>
 
-        <div className="mt-5 flex items-center justify-center gap-2 text-xs font-semibold text-[#F8D98D]">
+        <div className="mt-5 flex items-center justify-center gap-2 text-sm font-bold text-[#F8D98D]">
           <Heart className="w-4 h-4 fill-[#F1B8C8] text-[#F1B8C8]" />
-          <span>كل عام وإنتِ حية بخير يا زوبا ✨</span>
+          <span>كل سنة وانتي طيبة يا بهنوووسة 💗</span>
         </div>
       </div>
 
-      {/* Primary Action Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-3.5 mt-4 z-20">
-        {/* Special Celebration Song Button: Sidi Mansour - Saber Rebai */}
-        <button
-          onClick={() => {
-            if (currentTrackIndex === 2 && isPlaying) {
-              pause();
-            } else {
-              selectTrack(2);
-              fireGrandConfetti();
-            }
-          }}
-          className={`px-6 py-3 rounded-full font-bold text-sm shadow-xl transition-all flex items-center gap-2 cursor-pointer ${
-            currentTrackIndex === 2 && isPlaying
-              ? 'bg-gradient-to-r from-[#F8D98D] to-[#e6be60] text-[#17172B] shadow-[#F8D98D]/30 scale-105'
-              : 'bg-gradient-to-r from-[#8b2435] via-[#a82d42] to-[#c73b53] hover:from-[#a82d42] hover:to-[#db455e] text-[#FFF5F0] shadow-red-900/30 hover:scale-105 active:scale-95'
-          }`}
-        >
-          <Music className="w-4 h-4" />
-          <span>Sidi Mansour (Saber Rebai) 💃🇹🇳</span>
-        </button>
+      {/* Organized Celebration Action Dashboard */}
+      <div className="w-full max-w-xl mx-auto flex flex-col gap-4 mt-4 z-20 px-2 pb-28">
+        {/* 1. Dedicated Music Box: Celebration Tracks in their own neat section */}
+        <div className="rounded-2xl bg-[#222139]/80 border border-[#B9A4E8]/30 p-4 sm:p-5 shadow-xl backdrop-blur-md">
+          <div className="flex items-center justify-between mb-3 px-1">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#F8D98D] uppercase tracking-wider">
+              <Music className="w-4 h-4 text-[#F8D98D]" />
+              <span>Songs For You 💗</span>
+            </div>
+            {/* Quick Confetti Popper Button */}
+            <button
+              onClick={fireGrandConfetti}
+              title="Celebrate with Confetti"
+              className="px-2.5 py-1 rounded-full bg-[#F8D98D]/20 hover:bg-[#F8D98D]/30 border border-[#F8D98D]/40 text-xs text-[#F8D98D] font-medium flex items-center gap-1 transition-all cursor-pointer active:scale-95"
+            >
+              <span>🎉</span>
+              <span className="text-[11px] font-semibold">Confetti</span>
+            </button>
+          </div>
 
-        {/* Special Celebration Song Button: Kelma - Ramy Sabry */}
-        <button
-          onClick={() => {
-            if (currentTrackIndex === 1 && isPlaying) {
-              pause();
-            } else {
-              selectTrack(1);
-              fireGrandConfetti();
-            }
-          }}
-          className={`px-6 py-3 rounded-full font-bold text-sm shadow-xl transition-all flex items-center gap-2 cursor-pointer ${
-            currentTrackIndex === 1 && isPlaying
-              ? 'bg-gradient-to-r from-[#F8D98D] to-[#e6be60] text-[#17172B] shadow-[#F8D98D]/30 scale-105'
-              : 'bg-[#222139] hover:bg-[#B9A4E8]/20 text-[#FFF5F0] border border-[#B9A4E8]/40 hover:scale-105 active:scale-95'
-          }`}
-        >
-          <Music className="w-4 h-4 text-[#F8D98D]" />
-          <span>Kelma (Ramy Sabry)</span>
-        </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {/* Sidi Mansour Track */}
+            <button
+              onClick={() => {
+                if (currentTrackIndex === 2 && isPlaying) {
+                  pause();
+                } else {
+                  selectTrack(2);
+                  fireGrandConfetti();
+                }
+              }}
+              className={`p-3 rounded-xl border flex items-center justify-between gap-2.5 transition-all cursor-pointer ${
+                currentTrackIndex === 2 && isPlaying
+                  ? 'bg-gradient-to-r from-[#8b2435] to-[#a82d42] border-[#F8D98D] shadow-lg shadow-red-950/40 text-[#FFF5F0]'
+                  : 'bg-[#17172B]/70 hover:bg-[#17172B] border-[#B9A4E8]/20 text-[#C5BFD8] hover:text-[#FFF5F0]'
+              }`}
+            >
+              <div className="flex items-center gap-2.5 min-w-0 text-left">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                  currentTrackIndex === 2 && isPlaying ? 'bg-white/20' : 'bg-[#222139]'
+                }`}>
+                  <Music className="w-4 h-4 text-[#F8D98D]" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold truncate text-[#FFF5F0]">Sidi Mansour</p>
+                  <p className="text-[10px] text-[#C5BFD8]/70 truncate">Saber Rebai 🇹🇳</p>
+                </div>
+              </div>
+              <span className="text-xs shrink-0 font-medium px-2 py-0.5 rounded-full bg-white/10 text-[#F8D98D]">
+                {currentTrackIndex === 2 && isPlaying ? 'Playing ♪' : 'Play ▶'}
+              </span>
+            </button>
 
-        {/* Virtual Hug Across the Miles Button */}
-        <button
-          onClick={handleSendWarmHug}
-          className="px-6 py-3 rounded-full bg-gradient-to-r from-[#F1B8C8] via-[#FF8EAA] to-[#F8D98D] text-[#17172B] font-bold text-sm shadow-xl shadow-pink-500/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
-        >
-          <span>Send a Warm Hug 🤗</span>
-        </button>
+            {/* Kelma Track */}
+            <button
+              onClick={() => {
+                if (currentTrackIndex === 1 && isPlaying) {
+                  pause();
+                } else {
+                  selectTrack(1);
+                  fireGrandConfetti();
+                }
+              }}
+              className={`p-3 rounded-xl border flex items-center justify-between gap-2.5 transition-all cursor-pointer ${
+                currentTrackIndex === 1 && isPlaying
+                  ? 'bg-gradient-to-r from-[#382b61] to-[#4c3b82] border-[#F8D98D] shadow-lg shadow-purple-950/40 text-[#FFF5F0]'
+                  : 'bg-[#17172B]/70 hover:bg-[#17172B] border-[#B9A4E8]/20 text-[#C5BFD8] hover:text-[#FFF5F0]'
+              }`}
+            >
+              <div className="flex items-center gap-2.5 min-w-0 text-left">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                  currentTrackIndex === 1 && isPlaying ? 'bg-white/20' : 'bg-[#222139]'
+                }`}>
+                  <Music className="w-4 h-4 text-[#B9A4E8]" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold truncate text-[#FFF5F0]">Kelma</p>
+                  <p className="text-[10px] text-[#C5BFD8]/70 truncate">Ramy Sabry</p>
+                </div>
+              </div>
+              <span className="text-xs shrink-0 font-medium px-2 py-0.5 rounded-full bg-white/10 text-[#F8D98D]">
+                {currentTrackIndex === 1 && isPlaying ? 'Playing ♪' : 'Play ▶'}
+              </span>
+            </button>
+          </div>
+        </div>
 
-        {/* Download Keepsake Card Button */}
-        <button
-          onClick={handleDownloadKeepsake}
-          disabled={isGeneratingCard}
-          className="px-6 py-3 rounded-full bg-[#222139] hover:bg-[#B9A4E8]/20 text-[#FFF5F0] border border-[#F8D98D]/40 font-semibold text-sm transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 shadow-lg"
-        >
-          <Download className="w-4 h-4 text-[#F8D98D]" />
-          <span>{isGeneratingCard ? 'Creating Card... ✨' : 'Save Keepsake Card 📸'}</span>
-        </button>
+        {/* 2. Interactive Highlights: Warm Hug & Keepsake Card */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Virtual Hug Button */}
+          <button
+            onClick={handleSendWarmHug}
+            className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#F1B8C8] via-[#FF8EAA] to-[#F8D98D] text-[#17172B] font-bold text-sm shadow-xl shadow-pink-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Heart className="w-4 h-4 fill-[#17172B]" />
+            <span>Send a Warm Hug 🤗</span>
+          </button>
 
-        {/* Celebration / Confetti Button - Emoji Only! */}
-        <button
-          onClick={fireGrandConfetti}
-          aria-label="Celebrate with Confetti"
-          title="🎉"
-          className="w-12 h-12 rounded-full bg-gradient-to-r from-[#F8D98D] via-[#FFE29A] to-[#F1B8C8] text-xl shadow-lg shadow-[#F8D98D]/30 hover:scale-115 active:scale-90 transition-all flex items-center justify-center cursor-pointer shrink-0"
-        >
-          🎉
-        </button>
+          {/* Download Keepsake Card */}
+          <button
+            onClick={handleDownloadKeepsake}
+            disabled={isGeneratingCard}
+            className="w-full py-3.5 px-4 rounded-xl bg-[#222139] hover:bg-[#2b2947] text-[#FFF5F0] border border-[#F8D98D]/60 font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Download className="w-4 h-4 text-[#F8D98D]" />
+            <span>{isGeneratingCard ? 'Creating Card... ✨' : 'Save Keepsake Card 📸'}</span>
+          </button>
+        </div>
 
-        <button
-          onClick={onBackToMemories}
-          className="px-6 py-3 rounded-full bg-[#222139] hover:bg-[#B9A4E8]/20 text-[#FFF5F0] border border-[#B9A4E8]/30 font-semibold text-sm transition-all flex items-center gap-2 cursor-pointer"
-        >
-          <Compass className="w-4 h-4 text-[#B9A4E8]" />
-          <span>{t.celebration.backToMemories}</span>
-        </button>
+        {/* 3. Navigation & Replay: Compact & Aligned */}
+        <div className="grid grid-cols-2 gap-3 pt-1">
+          <button
+            onClick={onBackToMemories}
+            className="w-full py-2.5 px-3 rounded-xl bg-[#17172B]/80 hover:bg-[#222139] text-[#C5BFD8] hover:text-[#FFF5F0] border border-[#B9A4E8]/20 font-medium text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <Compass className="w-3.5 h-3.5 text-[#B9A4E8]" />
+            <span className="truncate">{t.celebration.backToMemories}</span>
+          </button>
 
-        <button
-          onClick={onReplay}
-          className="px-6 py-3 rounded-full bg-[#17172B] hover:bg-[#222139] text-[#C5BFD8] hover:text-[#FFF5F0] border border-[#C5BFD8]/30 font-semibold text-sm transition-all flex items-center gap-2 cursor-pointer"
-        >
-          <RotateCcw className="w-4 h-4" />
-          <span>{t.celebration.replay}</span>
-        </button>
+          <button
+            onClick={onReplay}
+            className="w-full py-2.5 px-3 rounded-xl bg-[#17172B]/80 hover:bg-[#222139] text-[#C5BFD8] hover:text-[#FFF5F0] border border-[#B9A4E8]/20 font-medium text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-[#C5BFD8]" />
+            <span className="truncate">{t.celebration.replay}</span>
+          </button>
+        </div>
       </div>
 
       {/* Full Uncropped Photo Zoom Modal */}

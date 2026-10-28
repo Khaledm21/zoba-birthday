@@ -38,7 +38,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               draggable={false}
               onError={() => setHasError(true)}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 pointer-events-none"

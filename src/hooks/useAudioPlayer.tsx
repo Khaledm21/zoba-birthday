@@ -39,6 +39,7 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({ c
   // Initialize single persistent audio instance
   useEffect(() => {
     const audio = new Audio();
+    audio.preload = 'none';
     audio.loop = true;
     audio.volume = isMuted ? 0 : volume;
     audio.src = playlist[0].src;

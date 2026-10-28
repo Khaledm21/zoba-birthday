@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { LanguageProvider, useLanguage } from './hooks/useLanguageContext';
 import { AudioPlayerProvider } from './hooks/useAudioPlayer';
 import { StarryBackground } from './components/animations/StarryBackground';
@@ -22,6 +22,14 @@ const MainExperience: React.FC = () => {
   const [unlockedScenes, setUnlockedScenes] = useState<Set<SceneId>>(
     new Set<SceneId>(['hero', 'gift'])
   );
+
+  // Force scroll to top (point zero) on refresh / initial page load
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+  }, []);
 
   // Lightbox State
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
